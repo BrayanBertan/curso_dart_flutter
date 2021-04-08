@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "30800733267",
+    "project_id": "lojavirtualflutter-df453",
+    "storage_bucket": "lojavirtualflutter-df453.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30800733267:android:0bfe80eb6c87f09e5092a6",
+        "android_client_info": {
+          "package_name": "br.com.brayanbertan.loja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "30800733267-m3rqu0rjk15gtrlljec5rhk12r4ss95q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn1Y-Nf6XyNj8jyjWOYZemQjOsA0UZv74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30800733267-m3rqu0rjk15gtrlljec5rhk12r4ss95q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

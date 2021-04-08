@@ -1,0 +1,17 @@
+  Row(
+              children: [
+                ListViewLateral(
+                    controller.listaCorretos, color, Colors.greenAccent),
+                Expanded(
+                    child: Column(
+                  children: [
+                    Container(
+                        height: 100.0,
+                        child: ListViewTodos(controller, color)),
+                    GalaoWidget(controller),
+                  ],
+                )),
+                ListViewLateral(
+                    controller.listaIncorretos, color, Colors.redAccent),
+              ],
+            ),

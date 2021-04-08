@@ -1,0 +1,209 @@
+
+            FutureBuilder<QuerySnapshot>(
+              future: Firestore.instance.collection('home').orderBy('pos').getDocuments(),
+              builder: (context,snapshot){
+                if(!snapshot.hasData) {
+                  return SliverToBoxAdapter(
+                    child: Container(
+                      height: 200.0,
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
+                    ),
+                  );
+                }else{
+                   return  Text("${snapshot.data.documents.length}");
+                }
+              },
+            )
+
+
+
+
+
+
+
+
+
+import 'package:flutter/material.dart';
+import 'package:loja/tabs/home_tab.dart';
+import 'package:loja/widgets/custom_drawer.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  final _pageController = PageController();
+  @override
+  Widget build(BuildContext context) {
+    return  PageView(
+        controller: _pageController,
+        physics: NeverScrollableScrollPhysics(),
+        children: [
+          Scaffold(
+            body: HomePage(),
+            drawer: CustomDrawer(
+
+            ),
+          )
+        ],
+      );
+  }
+}
+
+
+
+
+  ListView.builder(
+                          padding: EdgeInsets.all(12.5),
+                          itemCount: snapshot.data.documents.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                CircleAvatar(
+                                  minRadius:
+                                      MediaQuery.of(context).size.width * 0.2,
+                                  backgroundImage: NetworkImage(
+                                      snapshot.data.documents[index]['url'][0]),
+                                ),
+                                Text(snapshot.data.documents[index]['titulo'])
+                              ],
+                            );
+                          }),
+
+
+
+
+
+
+
+
+
+
+      margin: EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+      child: widget.produto.produto == null
+          ? FutureBuilder<DocumentSnapshot>(
+              future: Firestore.instance
+                  .collection('produtos')
+                  .document(widget.produto.categoria)
+                  .collection('itens')
+                  .document(widget.produto.pid)
+                  .get(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  widget.produto.produto = Produto.fromDocument(snapshot.data);
+                  return _buildContent();
+                } else {
+                  return Container(
+                    alignment: Alignment.center,
+                    height: 70.0,
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              })
+          : _buildContent(),
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+class LojaTile extends StatelessWidget {
+  DocumentSnapshot ds;
+
+  LojaTile(this.ds);
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            height: 100.0,
+            child: Image.network(
+              ds.data['url'],
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${ds.data['nome']}',
+                  textAlign: TextAlign.start,
+                ),
+                Text(
+                  '${ds.data['endereco']}',
+                  textAlign: TextAlign.start,
+                )
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FlatButton(
+                onPressed: () {
+                  launch('https://www.google.com/maps/search/?api=1&query='
+                      '${ds.data['lat']},${ds.data['long']}');
+                },
+                child: Text('Ver no mapa'),
+                textColor: Colors.blue,
+                padding: EdgeInsets.zero,
+              ),
+              FlatButton(
+                onPressed: () {
+                  launch('tel:${ds.data['fone']}');
+                },
+                child: Text('Ligar'),
+                textColor: Colors.blue,
+                padding: EdgeInsets.zero,
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+/*  Flexible(flex: 1, child:  Image.network(ds.data['url'])),
+          Flexible(flex: 1, child: Image.network(ds.data['url'])),  */
+

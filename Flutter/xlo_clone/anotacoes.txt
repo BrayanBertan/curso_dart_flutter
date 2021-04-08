@@ -1,0 +1,39 @@
+  await Parse().initialize('X63RfSrhjyxd6xC6SkxjfVLyPOtIn4WLdhkazgEM',
+      'https://parseapi.back4app.com/',
+      clientKey: 'tXXerHtVnpiE021YzrVKCb4qMvpCEeUY7tq0yQAN',
+      autoSendSessionId: true,
+      debug: true);
+
+  /*final categoria = ParseObject('Categorias')
+    ..set<String>('Title', 'Massas')
+    ..set<int>('Position', 1);
+
+  final response = await categoria.save();
+  print(response.results);*/
+
+/*  final categoria = ParseObject('Categorias')
+    ..objectId = '0wRQFx8cDr'
+    ..set<int>('Position', 3);
+
+  final response = await categoria.save();
+  print(response.results);*/
+
+/*final categoria = ParseObject('Categorias')..objectId = '0wRQFx8cDr';
+
+categoria.delete();*/
+
+  /*final response = await ParseObject('Categorias').getObject('mhlzvECfxj');
+
+ print(response.result);*/
+ /* final response = await ParseObject('Categorias').getAll();
+
+  print(response.results);*/
+
+  /*final query = QueryBuilder(ParseObject('Categorias'));
+  query.whereEqualTo('Position',2);*/
+
+  final query = QueryBuilder(ParseObject('Categorias'));
+  query.whereContains('Title','Blusas');
+
+  final response = await query.query();
+  print(response.result);

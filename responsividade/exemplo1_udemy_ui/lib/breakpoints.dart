@@ -1,0 +1,1 @@
+const MOBILE_BREAKPOINT = 800;

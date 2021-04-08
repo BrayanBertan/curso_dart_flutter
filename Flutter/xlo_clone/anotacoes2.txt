@@ -1,0 +1,22 @@
+  MaterialStateProperty.resolveWith<Color>(
+                                    (Set<MaterialState> states) {
+                                      if (states
+                                          .contains(MaterialState.pressed))
+                                        return Colors.purple;
+                                      else if (states
+                                          .contains(MaterialState.disabled))
+                                        return Colors.purple;
+                                      return Colors
+                                          .purple; // Use the component's default.
+                                    }
+
+
+
+
+
+
+ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                                    (Set<MaterialState> states) =>
+                                        Colors.purple)),

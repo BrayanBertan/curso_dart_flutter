@@ -1,0 +1,71 @@
+keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+
+
+
+
+
+
+
+
+ /* Firestore.instance.collection
+    ("mensagens").document("msg1").collection("arquivos").document().setData(
+      {
+        "arquivo":"foto.png"
+      }
+      );*/
+
+  /*QuerySnapshot snapshot = await Firestore.instance.collection("mensagens").getDocuments();
+  DocumentSnapshot ds = await Firestore.instance.collection("mensagens").document("lUzrlbt3TF5akHAyVCom").get();
+  print(ds.data);
+  snapshot.documents.forEach((element) {
+    print(element.data);
+  });*/
+
+  Firestore.instance.collection("mensagens").snapshots().listen((event) {
+    event.documents.forEach((element) {
+      print(element.data);
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+Note: C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\cloud_firestore-0.13.7\android\src\main\java\io\flutter\plugins\firebase\cloudfirestore\CloudFirestorePlugin.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+
+
+
+
+
+
+
+
+
+
+msgs[index].data["texto"] != null
+                                ? ListTile(
+                                    title: Text(msgs[index].data["texto"]))
+                                : Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.00000000000000000000000001,
+                                    height: 100.0,
+                                    color: Colors.black,
+                                    child: Image.network(
+                                      msgs[index].data["url"],
+                                      alignment: Alignment.bottomLeft,
+                                    ),
+                                  );
+
+
+ChatMessage(msgs[index].data)
+
+
+
+
